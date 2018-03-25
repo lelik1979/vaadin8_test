@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="5 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                %date{HH:mm:ss. dd/MM/yyyy} %-5level [%thread] [%class.%method:%line] %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP_LOG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>beads.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                %date{HH:mm:ss. dd/MM/yyyy} %-5level [%thread] [%class.%method:%line] %msg%n
+            </pattern>
+        </encoder>
+
+    </appender>
+
+    <logger name="com.home" level="DEBUG"/>
+    <logger name="org.springframework" level="debug"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="APP_LOG_FILE"/>
+    </root>
+
+</configuration>
