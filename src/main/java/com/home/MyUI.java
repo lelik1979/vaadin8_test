@@ -1,17 +1,18 @@
 package com.home;
 
 import com.home.view.ContextPanel;
-import com.home.view.ProductGroupView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.Viewport;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.UI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 
@@ -31,6 +32,9 @@ public class MyUI extends UI  {
 
     public static final Logger LOG = LoggerFactory.getLogger(MyUI.class);
 
+    @Autowired
+    SpringViewProvider springViewProvider;
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setSizeFull();
@@ -46,10 +50,7 @@ public class MyUI extends UI  {
 
     private void initNavigator(ContextPanel cp) {
         Navigator navigator = new Navigator(this, cp);
-        navigator.addView(ProductGroupView.VIEW_NAME, ProductGroupView.class);
-//        navigator.addView(ProductView.VIEW_NAME, ProductView.class);
-//        navigator.addView(OrderView.VIEW_NAME, OrderView.class);
-        navigator.addView("", ContextPanel.class);
+        navigator.addProvider(springViewProvider);
     }
 
 }
