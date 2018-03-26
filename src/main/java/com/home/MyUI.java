@@ -1,6 +1,7 @@
 package com.home;
 
 import com.home.view.ContextPanel;
+import com.home.view.MenuPanel;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.Viewport;
@@ -39,7 +40,7 @@ public class MyUI extends UI  {
     protected void init(VaadinRequest vaadinRequest) {
         setSizeFull();
         HorizontalSplitPanel layout = new HorizontalSplitPanel();
-//        layout.setFirstComponent(new MenuPanel());
+        layout.setFirstComponent(new MenuPanel());
         layout.setSplitPosition(15, Unit.PERCENTAGE);
         ContextPanel cp = new ContextPanel();
         layout.setSecondComponent(cp);
