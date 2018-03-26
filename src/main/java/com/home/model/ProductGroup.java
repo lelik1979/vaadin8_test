@@ -1,5 +1,6 @@
 package com.home.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +10,13 @@ import java.util.List;
  */
 //@Entity
 //@Table(name = ProductGroup.TABLE_NAME)
-public class ProductGroup {
+public class ProductGroup implements Serializable {
 
     public static final String TABLE_NAME = "product_group";
 
-    public static final String ID = "id";
+    public static final String ID_PROPERTY_NAME = "id";
 
-    public static final String NAME = "name";
+    public static final String NAME_PROPERTY_NAME = "name";
 
     public static final String PARENT_PRODUCT_GROUP = "parentProductGroup";
 
@@ -84,9 +85,7 @@ public class ProductGroup {
 
         ProductGroup that = (ProductGroup) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-
-        return true;
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override

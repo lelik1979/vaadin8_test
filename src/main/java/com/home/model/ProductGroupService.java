@@ -2,17 +2,26 @@ package com.home.model;
 
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @SpringComponent
 @UIScope
-public class ProductGroupService {
+public class ProductGroupService implements Serializable {
 
-    private List<ProductGroup> productGroups;
+    private List<ProductGroup> productGroupList;
+
+    private String filter = "";
+
+    private final Predicate<ProductGroup> productGroupFilterPredicate = productGroup -> productGroup.getName().contains(filter);
 
     public ProductGroupService() {
-        this.productGroups = init();
+        this.productGroupList = init();
     }
 
     private List<ProductGroup> init() {
@@ -31,10 +40,19 @@ public class ProductGroupService {
     }
 
     public int count() {
-        return productGroups.size();
+        Long count = productGroupList.stream()
+                .filter(productGroupFilterPredicate)
+                .count();
+        return count.intValue();
     }
 
-    public List<ProductGroup> findAll(int offset, int limit) {
-        return productGroups;
+    public Stream<ProductGroup> findAll(int offset, int limit) {
+        return productGroupList.stream()
+                .filter(productGroupFilterPredicate);
     }
+
+    public void setFilter(String filter) {
+        this.filter = Objects.requireNonNull(filter, "filter can't be null");
+    }
+
 }
