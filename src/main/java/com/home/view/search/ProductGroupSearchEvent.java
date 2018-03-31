@@ -1,4 +1,4 @@
-package com.home.view;
+package com.home.view.search;
 
 public class ProductGroupSearchEvent {
 
@@ -10,5 +10,9 @@ public class ProductGroupSearchEvent {
 
     public String getSearchString() {
         return searchString;
+    }
+
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
     }
 }

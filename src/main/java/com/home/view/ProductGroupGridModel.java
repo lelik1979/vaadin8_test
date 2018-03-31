@@ -2,6 +2,7 @@ package com.home.view;
 
 import com.home.model.ProductGroup;
 import com.home.model.ProductGroupService;
+import com.home.view.search.ProductGroupSearchEvent;
 import com.vaadin.data.provider.AbstractBackEndDataProvider;
 import com.vaadin.data.provider.Query;
 import org.vaadin.spring.events.Event;
