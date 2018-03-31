@@ -1,6 +1,7 @@
 package com.home.view.search;
 
 import com.vaadin.data.ValidationException;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
@@ -22,16 +23,17 @@ public class SearchPanel extends Panel {
     public SearchPanel(EventBus eventBus) {
         this.eventBus = eventBus;
         HorizontalLayout layout = new HorizontalLayout();
+        layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         setContent(layout);
         initComponents(layout);
     }
 
-    private void initComponents(Layout layout) {
+    private void initComponents(HorizontalLayout layout) {
         addTextSearch(layout);
         addButton(layout);
     }
 
-    private void addButton(Layout layout) {
+    private void addButton(HorizontalLayout layout) {
         Button searchButton = new Button("Поиск");
         searchButton.addClickListener(event -> {
             try {
@@ -42,6 +44,7 @@ public class SearchPanel extends Panel {
             }
         });
         layout.addComponent(searchButton);
+        layout.setComponentAlignment(searchButton, Alignment.BOTTOM_CENTER);
     }
 
     private void addTextSearch(Layout layout) {
